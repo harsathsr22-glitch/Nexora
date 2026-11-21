@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("Nexora MongoDB Connected!");
 
-        app.listen(3000, () => {
+        app.listen(process.env.PORT || 3000, () => {
             console.log("Nexora Server Running on Port 3000");
         });
     })
