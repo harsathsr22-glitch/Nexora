@@ -1,7 +1,8 @@
+const API_URL = "https://nexora-jlv2.onrender.com";
 let PRODUCTS = [];
 async function loadProducts() {
     try {
-        const response = await fetch("http://localhost:3000/api/products", {
+        const response = await fetch("https://nexora-jlv2.onrender.com/api/products", {
         signal: AbortSignal.timeout(3000)
         });
 
@@ -364,7 +365,7 @@ function checkout() {
 
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/orders",
+                    "https://nexora-jlv2.onrender.com/api/orders",
                     {
                         method: "POST",
                         headers: {
@@ -462,8 +463,8 @@ async function admin() {
 
     try {
         const [productResponse, orderResponse] = await Promise.all([
-            fetch("http://localhost:3000/api/products"),
-            fetch("http://localhost:3000/api/orders")
+            fetch("https://nexora-jlv2.onrender.com/api/products"),
+            fetch("https://nexora-jlv2.onrender.com/api/orders")
         ]);
 
         if (!productResponse.ok || !orderResponse.ok) {
@@ -565,7 +566,7 @@ async function adminProducts() {
     const productList = document.querySelector("#productlist");
 
     async function showProducts() {
-        const response = await fetch("http://localhost:3000/api/products");
+        const response = await fetch("https://nexora-jlv2.onrender.com/api/products");
         if (!response.ok) throw new Error("Could not load products");
 
         PRODUCTS = (await response.json()).map(p => ({
@@ -604,7 +605,7 @@ async function adminProducts() {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/api/products", {
+            const response = await fetch("https://nexora-jlv2.onrender.com/api/products", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(product)
@@ -629,7 +630,7 @@ async function adminProducts() {
                 if (!confirm("Delete this product?")) return;
 
                 const response = await fetch(
-                    `http://localhost:3000/api/products/${id}`,
+                    `https://nexora-jlv2.onrender.com/api/products/${id}`,
                     { method: "DELETE" }
                 );
 
@@ -656,7 +657,7 @@ async function adminProducts() {
                 }
 
                 const response = await fetch(
-                    `http://localhost:3000/api/products/${id}`,
+                    `https://nexora-jlv2.onrender.com/api/products/${id}`,
                     {
                         method: "PUT",
                         headers: { "Content-Type": "application/json" },
@@ -695,7 +696,7 @@ async function adminOrders() {
     const container = document.getElementById("orders-container");
 
     try {
-        const response = await fetch("http://localhost:3000/api/orders");
+        const response = await fetch("https://nexora-jlv2.onrender.com/api/orders");
         if (!response.ok) throw new Error("Unable to load orders");
 
         const orders = await response.json();
@@ -745,7 +746,7 @@ async function adminOrders() {
             select.addEventListener("change", async () => {
                 try {
                     const result = await fetch(
-                        `http://localhost:3000/api/orders/${select.dataset.id}/status`,
+                        `https://nexora-jlv2.onrender.com/api/orders/${select.dataset.id}/status`,
                         {
                             method: "PATCH",
                             headers: {
